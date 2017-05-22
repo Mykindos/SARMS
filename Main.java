@@ -23,9 +23,7 @@ public class Main
         new Connect();
         new QueryExecutor();
         
-        AccountRepository.loadUsers();
-        UnitRepository.loadUnits();
-        
+        loadDatabase();
         
         while(!started){
         	try {
@@ -37,5 +35,11 @@ public class Main
         
         SwingUtilities.invokeLater(() -> new LoginGUI());
         
+    }
+    
+    public static void loadDatabase(){
+    	  AccountRepository.loadUsers();
+          UnitRepository.loadUnits();
+          
     }
 }

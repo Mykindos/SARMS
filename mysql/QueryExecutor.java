@@ -4,6 +4,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * 
+ * @author Tom Hoogstra - SIT215123867 (22/05/2017)
+ *
+ */
+
+
 public class QueryExecutor {
 
 	public static ConcurrentLinkedQueue<Query> queries = new ConcurrentLinkedQueue<>();

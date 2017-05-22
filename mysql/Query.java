@@ -2,9 +2,15 @@ package deakin.edu.au.sarms.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
+
+/**
+ * 
+ * @author Tom Hoogstra - SIT215123867 (22/05/2017)
+ *
+ */
+
 
 public class Query {
 

@@ -1,25 +1,24 @@
 package deakin.edu.au.sarms.accounts.mysql;
 
 import java.sql.PreparedStatement;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import deakin.edu.au.sarms.accounts.User;
+import deakin.edu.au.sarms.accounts.User.Status;
 import deakin.edu.au.sarms.accounts.UserManager;
 import deakin.edu.au.sarms.accounts.types.Administrator;
 import deakin.edu.au.sarms.accounts.types.Lecturer;
-import deakin.edu.au.sarms.accounts.User.Status;
+import deakin.edu.au.sarms.accounts.types.Student;
 import deakin.edu.au.sarms.mysql.Connect;
 import deakin.edu.au.sarms.mysql.QueryExecutor;
 
 
 /**
  * 
- * @author Tom Hoogstra - SIT215123867 (21/05/2017)
+ * @author Robert Meredith (22/05/17)
  *
- */	
+ */
 
 public class AccountRepository {
 
@@ -36,7 +35,7 @@ public class AccountRepository {
 
 			int count = 0;
 			while (result.next()) {
-				int id = result.getInt(1);
+				String id = result.getString(1);
 				String username = result.getString(2);
 				String password = result.getString(3);
 				String firstName = result.getString(4);
@@ -51,7 +50,7 @@ public class AccountRepository {
 					Lecturer user = new Lecturer(id, username, password, firstName, lastName, status);
 					UserManager.addUser(user);
 				}else if(role.equals("Student")){
-					User user = new User(id, username, password, firstName, lastName, status);
+					Student user = new Student(id, username, password, firstName, lastName, status);
 					UserManager.addUser(user);
 				}
 				
@@ -93,7 +92,7 @@ public class AccountRepository {
 				+ ", Password='" + user.getPassword() + "'"
 				+ ", FirstName='" + user.getFirstName() + "'"
 				+ ", LastName='" + user.getLastName() + "'"
-				+ ", Status='" + user.getAccountStatus().name() + "'";
+				+ ", Status='" + user.getAccountStatus().name() + "' WHERE UserID=" + user.getUserID();
 		QueryExecutor.addQuery(query);
 	}
 	

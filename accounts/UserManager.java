@@ -20,6 +20,7 @@ public class UserManager {
 	 */
 	public static void addUser(User user){
 		userList.add(user);
+		
 	}
 	
 	/**
@@ -35,8 +36,8 @@ public class UserManager {
 	 * @param id The Users ID
 	 * @return The User found, NULL if no user is found with provided ID
 	 */
-	public static User getUserByID(int id){
-		return userList.stream().filter(user -> user.getUserID() == id)
+	public static User getUserByID(String id){
+		return userList.stream().filter(user -> user.getUserID().equalsIgnoreCase(id))
 				.findFirst().orElse(null);
 	}
 	

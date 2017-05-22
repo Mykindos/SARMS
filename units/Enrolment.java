@@ -9,21 +9,21 @@ package deakin.edu.au.sarms.units;
 public class Enrolment {
 
 	
-	private int userID;
-	private int unitID;
+	private String userID;
+	private String unitID;
 	private String role;
 	
-	public Enrolment(int unitID, int userID, String role){
+	public Enrolment(String unitID, String userID, String role){
 		this.unitID = unitID;
 		this.userID = userID;
 		this.role = role;
 	}
 	
-	public int getUnitID(){
+	public String getUnitID(){
 		return unitID;
 	}
 	
-	public int getUserID(){
+	public String getUserID(){
 		return userID;
 	}
 	

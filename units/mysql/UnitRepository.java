@@ -3,14 +3,20 @@ package deakin.edu.au.sarms.units.mysql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import deakin.edu.au.sarms.Main;
 import deakin.edu.au.sarms.accounts.User;
 import deakin.edu.au.sarms.accounts.UserManager;
+import deakin.edu.au.sarms.attendance.mysql.AttendanceRepository;
 import deakin.edu.au.sarms.mysql.Connect;
 import deakin.edu.au.sarms.mysql.QueryExecutor;
 import deakin.edu.au.sarms.units.Enrolment;
 import deakin.edu.au.sarms.units.Unit;
 import deakin.edu.au.sarms.units.UnitManager;
+
+/**
+ * 
+ * @author Robert Meredith (22/05/17)
+ *
+ */
 
 public class UnitRepository {
 
@@ -25,7 +31,7 @@ public class UnitRepository {
 
 			int count = 0;
 			while (result.next()) {
-				int unitID = result.getInt(1);
+				String unitID = result.getString(1);
 				String unitCode = result.getString(2);
 				String name = result.getString(3);
 
@@ -56,8 +62,8 @@ public class UnitRepository {
 
 			int count = 0;
 			while (result.next()) {
-				int unitID = result.getInt(1);
-				int userID = result.getInt(2);
+				String unitID = result.getString(1);
+				String userID = result.getString(2);
 				String unitRole = result.getString(3);
 
 				User user = UserManager.getUserByID(userID);
@@ -73,7 +79,9 @@ public class UnitRepository {
 			e.printStackTrace();
 		}
 		
-		Main.started = true;
+		
+		AttendanceRepository.loadAttendance();
+		
 
 
 	}
@@ -93,7 +101,18 @@ public class UnitRepository {
 	 * @param unit The unit to remove
 	 */
 	public static void removeUnit(Unit unit){
-		String query = "DELETE FROM units WHERE UnitID=" + unit.getUnitID();
+		String query = "DELETE FROM units WHERE UnitID='" + unit.getUnitID() + "'";
+		QueryExecutor.addQuery(query);
+	}
+	
+	/**
+	 * Updates the unit in the database
+	 * @param id The ID of the unite
+	 * @param unitCode The new unit code
+	 * @param unitName The new unit name
+	 */
+	public static void updateUnit(String id, String unitCode, String unitName){
+		String query = "UPDATE units SET UnitCode='" + unitCode + "', UnitName='" + unitName+ "' WHERE UnitID='" + id + "'";
 		QueryExecutor.addQuery(query);
 	}
 
@@ -104,7 +123,7 @@ public class UnitRepository {
 	 */
 	public static void removeEnrolment(Unit unit, User user){
 		String query = "DELETE FROM enrolments WHERE UnitID=" 
-				+ unit.getUnitID() + " AND UserID=" + user.getUserID();
+				+ unit.getUnitID() + " AND UserID='" + user.getUserID() + "'";
 		QueryExecutor.addQuery(query);
 	}
 

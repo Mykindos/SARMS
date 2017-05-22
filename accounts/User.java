@@ -5,7 +5,6 @@ import java.util.List;
 
 import deakin.edu.au.sarms.units.Enrolment;
 import deakin.edu.au.sarms.units.Unit;
-import deakin.edu.au.sarms.units.UnitManager;
 
 /**
  * 
@@ -15,12 +14,12 @@ import deakin.edu.au.sarms.units.UnitManager;
 
 public class User {
 	
-	private int userID;
+	private String userID;
 	private String username, password, firstName, lastName;
 	private Status status;
-	private List<Enrolment> enrolments;
+	protected List<Enrolment> enrolments;
 	
-	public User(int userID, String username, String password, String firstName, String lastName, Status status){
+	public User(String userID, String username, String password, String firstName, String lastName, Status status){
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
@@ -30,7 +29,7 @@ public class User {
 		this.enrolments = new ArrayList<>();
 	}
 	
-	public int getUserID(){
+	public String getUserID(){
 		return userID;
 	}
 	
@@ -38,33 +37,49 @@ public class User {
 		return username;
 	}
 	
+	public void setUsername(String username){
+		this.username = username;
+	}
+	
 	public String getPassword(){
 		return password;
+	}
+	
+	public void setPassword(String password){
+		this.password = password;
 	}
 	
 	public String getFirstName(){
 		return firstName;
 	}
 	
+	public void setFirstName(String firstName){
+		this.firstName = firstName;
+	}
+	
 	public String getLastName(){
 		return lastName;
+	}
+	
+	public void setLastName(String lastName){
+		this.lastName = lastName;
 	}
 	
 	public Status getAccountStatus(){
 		return status;
 	}
+	
+	public void setStatus(Status s){
+		this.status = s;
+	}
 
 	public enum Status{
 		ACTIVE, EXPIRED, LOCKED, DISABLED;
 	}
+
 	
-	public boolean isInUnit(String unitCode){
-		Unit unit = UnitManager.getUnitByCode(unitCode);
-		return isInUnit(unit.getUnitID());
-	}
-	
-	public boolean isInUnit(int unitID){
-		return enrolments.stream().anyMatch(unit -> unit.getUnitID() == unitID);
+	public boolean isInUnit(String unitID){
+		return enrolments.stream().anyMatch(unit -> unit.getUnitID().equalsIgnoreCase(unitID)); 
 	}
 	
 	public void addEnrolment(Enrolment e){
@@ -76,14 +91,14 @@ public class User {
 	}
 	
 	public Enrolment getEnrolment(Unit unit){
-		return enrolments.stream().filter(e -> e.getUnitID() == unit.getUnitID())
+		return enrolments.stream().filter(e -> e.getUnitID().equalsIgnoreCase(unit.getUnitID()))
 				.findAny().orElse(null);
 	}
 	
 	
 	@Override
 	public String toString(){
-		return getFirstName() + " " + getLastName() + " (" + getUserID() + ")";
+		return getFirstName() + " " + getLastName();
 	}
 
 }

@@ -10,7 +10,7 @@ import deakin.edu.au.sarms.accounts.User;
 
 public class Administrator extends User{
 
-	public Administrator(int userID, String username, String password,
+	public Administrator(String userID, String username, String password,
 			String firstName, String lastName, Status status) {
 		super(userID, username, password, firstName, lastName, status);
 	}

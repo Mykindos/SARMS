@@ -10,7 +10,7 @@ import deakin.edu.au.sarms.accounts.User;
 
 public class Student extends User{
 
-	public Student(int userID, String username, String password,
+	public Student(String userID, String username, String password,
 			String firstName, String lastName, Status status) {
 		super(userID, username, password, firstName, lastName, status);
 	}

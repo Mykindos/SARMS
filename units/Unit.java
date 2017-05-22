@@ -15,10 +15,10 @@ import deakin.edu.au.sarms.accounts.types.Student;
 
 public class Unit {
 
-	private int unitID;
+	private String unitID;
 	private String unitCode, unitName;
 
-	public Unit(int unitID, String unitCode, String unitName){
+	public Unit(String unitID, String unitCode, String unitName){
 		this.unitID = unitID;
 		this.unitCode = unitCode;
 		this.unitName = unitName;
@@ -28,7 +28,7 @@ public class Unit {
 	 * Get the Units ID
 	 * @return The Units ID
 	 */
-	public int getUnitID(){
+	public String getUnitID(){
 		return unitID;
 	}
 
@@ -39,6 +39,14 @@ public class Unit {
 	public String getUnitCode(){
 		return unitCode;
 	}
+	
+	/**
+	 * Set the Units Unit Code
+	 * @param code The new unit code
+	 */
+	public void setUnitCode(String code){
+		this.unitCode = code;
+	}
 
 	/**
 	 * Gets the Units Name
@@ -46,6 +54,14 @@ public class Unit {
 	 */
 	public String getUnitName(){
 		return unitName;
+	}
+	
+	/**
+	 * Set the Units Unit Name
+	 * @param name The new unit name
+	 */
+	public void setUnitName(String name){
+		this.unitName = name;
 	}
 
 	/**
@@ -57,7 +73,7 @@ public class Unit {
 		UserManager.userList.forEach(user -> {
 			if(user instanceof Lecturer){
 				Lecturer lecturer = (Lecturer) user;
-				if(lecturer.isInUnit(getUnitCode())){
+				if(lecturer.isInUnit(getUnitID())){
 					lecturers.add(lecturer);
 				}
 			}
@@ -74,7 +90,7 @@ public class Unit {
 		UserManager.userList.forEach(user -> {
 			if(user instanceof Student){
 				Student student = (Student) user;
-				if(student.isInUnit(getUnitCode())){
+				if(student.isInUnit(getUnitID())){
 					students.add(student);
 				}
 			}

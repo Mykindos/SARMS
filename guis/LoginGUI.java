@@ -19,6 +19,13 @@ import deakin.edu.au.sarms.accounts.UserManager;
 import deakin.edu.au.sarms.accounts.types.Administrator;
 import deakin.edu.au.sarms.accounts.types.Lecturer;
 
+/**
+ * 
+ * @author Tom Hoogstra - SIT215123867 (21/05/2017)
+ *
+ */
+
+
 public class LoginGUI extends JFrame {
 
 	/**
@@ -52,6 +59,9 @@ public class LoginGUI extends JFrame {
 		setMaximumSize(new Dimension(750, 400));
 		setMinimumSize(new Dimension(750, 400));
 		getContentPane().setLayout(null);
+		getContentPane().setMaximumSize(new Dimension(750, 400));
+        getContentPane().setMinimumSize(new Dimension(750, 400));
+        getContentPane(). setPreferredSize(new Dimension(750, 400));
 		getContentPane().add(txtPassword);
 		txtPassword.setBounds(300, 250, 200, 30);
 
@@ -91,7 +101,7 @@ public class LoginGUI extends JFrame {
 					if(user instanceof Administrator){
 						new AdminGUI();
 					}else if(user instanceof Lecturer){
-						
+						new LecturerGUI((Lecturer) user);
 					}else{
 						
 					}
