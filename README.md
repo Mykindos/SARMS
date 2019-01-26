@@ -2,7 +2,7 @@
 Student Management System<br />
 University Assignment<br /><br />
 
-# Features:
+# Features
 <br />
 Creating students, teachers and staff<br />
 Creating courses and units<br />
