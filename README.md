@@ -1,9 +1,10 @@
 # SARMS
-Student Management System
-University Assignment
+Student Management System<br />
+University Assignment<br /><br />
 
-Features:
-Creating students, teachers and staff
-Creating courses and units
-Assigning students / teachers to units
-MySQL storage
+# Features:
+<br />
+Creating students, teachers and staff<br />
+Creating courses and units<br />
+Assigning students / teachers to units<br />
+MySQL storage<br />
